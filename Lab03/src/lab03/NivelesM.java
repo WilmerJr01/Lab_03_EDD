@@ -49,7 +49,7 @@ public class NivelesM extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(730, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(254, 222, 1));
+        jPanel1.setBackground(new java.awt.Color(253, 184, 19));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NumeroDeNivel.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
@@ -61,7 +61,7 @@ public class NivelesM extends javax.swing.JFrame {
         TiempoLbl.setText("00:00");
         jPanel1.add(TiempoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, -1, -1));
 
-        MarcadoresBtn.setBackground(new java.awt.Color(254, 222, 1));
+        MarcadoresBtn.setBackground(new java.awt.Color(253, 184, 19));
         MarcadoresBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
         MarcadoresBtn.setForeground(new java.awt.Color(255, 255, 255));
         MarcadoresBtn.setText("Comprobar");
@@ -83,7 +83,7 @@ public class NivelesM extends javax.swing.JFrame {
 
         PreguntaLbl.setBackground(new java.awt.Color(255, 255, 255));
         PreguntaLbl.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        PreguntaLbl.setForeground(new java.awt.Color(254, 222, 1));
+        PreguntaLbl.setForeground(new java.awt.Color(253, 184, 19));
         PreguntaLbl.setText("x=3+45-5");
         jPanel2.add(PreguntaLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 130));
 

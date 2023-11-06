@@ -10,12 +10,12 @@ import javax.swing.ImageIcon;
  *
  * @author WILME
  */
-public class Marcadores extends javax.swing.JFrame {
+public class PantallaFinal extends javax.swing.JFrame {
 
     /**
      * Creates new form VentanaPrincipal
      */
-    public Marcadores() {
+    public PantallaFinal() {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -32,10 +32,14 @@ public class Marcadores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Titulo = new javax.swing.JLabel();
+        NumPuntaje = new javax.swing.JLabel();
+        PuntajeLbl = new javax.swing.JLabel();
+        NombreLbl = new javax.swing.JLabel();
+        ResumenLbl = new javax.swing.JLabel();
+        MarcadoresBtn = new javax.swing.JButton();
         VolverBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaPuntaje = new javax.swing.JTable();
         FondoPrincipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,10 +47,38 @@ public class Marcadores extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(730, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Titulo.setFont(new java.awt.Font("Malgun Gothic", 1, 48)); // NOI18N
-        Titulo.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo.setText("Marcadores");
-        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
+        NumPuntaje.setFont(new java.awt.Font("Malgun Gothic", 1, 34)); // NOI18N
+        NumPuntaje.setForeground(new java.awt.Color(255, 255, 255));
+        NumPuntaje.setText("###");
+        getContentPane().add(NumPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
+
+        PuntajeLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 34)); // NOI18N
+        PuntajeLbl.setForeground(new java.awt.Color(255, 255, 255));
+        PuntajeLbl.setText("Tu Puntaje:");
+        getContentPane().add(PuntajeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
+
+        NombreLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
+        NombreLbl.setForeground(new java.awt.Color(255, 255, 255));
+        NombreLbl.setText("Nombre");
+        getContentPane().add(NombreLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+
+        ResumenLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
+        ResumenLbl.setForeground(new java.awt.Color(255, 255, 255));
+        ResumenLbl.setText("Resumen:");
+        getContentPane().add(ResumenLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 130, -1, -1));
+
+        MarcadoresBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        MarcadoresBtn.setForeground(new java.awt.Color(255, 255, 255));
+        MarcadoresBtn.setText("Marcadores >");
+        MarcadoresBtn.setBorderPainted(false);
+        MarcadoresBtn.setContentAreaFilled(false);
+        MarcadoresBtn.setDefaultCapable(false);
+        MarcadoresBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MarcadoresBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(MarcadoresBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 450, -1, -1));
 
         VolverBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
         VolverBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -61,7 +93,7 @@ public class Marcadores extends javax.swing.JFrame {
         });
         getContentPane().add(VolverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaPuntaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -72,9 +104,15 @@ public class Marcadores extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaPuntaje);
+        if (TablaPuntaje.getColumnModel().getColumnCount() > 0) {
+            TablaPuntaje.getColumnModel().getColumn(0).setResizable(false);
+            TablaPuntaje.getColumnModel().getColumn(1).setResizable(false);
+            TablaPuntaje.getColumnModel().getColumn(2).setResizable(false);
+            TablaPuntaje.getColumnModel().getColumn(3).setResizable(false);
+        }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, 310));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, 260));
 
         FondoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab03/Imagenes/FondoPrincipal.png"))); // NOI18N
         getContentPane().add(FondoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
@@ -82,9 +120,13 @@ public class Marcadores extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void VolverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBtnActionPerformed
+    private void MarcadoresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcadoresBtnActionPerformed
         new VentanaPrincipal().setVisible(true);
         this.dispose();
+    }//GEN-LAST:event_MarcadoresBtnActionPerformed
+
+    private void VolverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBtnActionPerformed
+        // TODO add your handling code here:
     }//GEN-LAST:event_VolverBtnActionPerformed
 
     /**
@@ -104,30 +146,36 @@ public class Marcadores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Marcadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Marcadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Marcadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Marcadores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Marcadores().setVisible(true);
+                new PantallaFinal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FondoPrincipal;
-    private javax.swing.JLabel Titulo;
+    private javax.swing.JButton MarcadoresBtn;
+    private javax.swing.JLabel NombreLbl;
+    private javax.swing.JLabel NumPuntaje;
+    private javax.swing.JLabel PuntajeLbl;
+    private javax.swing.JLabel ResumenLbl;
+    private javax.swing.JTable TablaPuntaje;
     private javax.swing.JButton VolverBtn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
