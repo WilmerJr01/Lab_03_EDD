@@ -38,7 +38,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         FondoPrincipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(730, 500));
         setResizable(false);
         setSize(new java.awt.Dimension(730, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -53,6 +52,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JugarBtn.setText("Jugar");
         JugarBtn.setBorderPainted(false);
         JugarBtn.setContentAreaFilled(false);
+        JugarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JugarBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(JugarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
 
         MarcadoresBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
@@ -61,6 +65,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         MarcadoresBtn.setBorderPainted(false);
         MarcadoresBtn.setContentAreaFilled(false);
         MarcadoresBtn.setDefaultCapable(false);
+        MarcadoresBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MarcadoresBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(MarcadoresBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, -1, -1));
 
         FondoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab03/Imagenes/FondoPrincipal.png"))); // NOI18N
@@ -68,6 +77,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JugarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JugarBtnActionPerformed
+        new NivelesM().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_JugarBtnActionPerformed
+
+    private void MarcadoresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcadoresBtnActionPerformed
+        new Marcadores().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MarcadoresBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,4 +129,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton MarcadoresBtn;
     private javax.swing.JLabel Titulo;
     // End of variables declaration//GEN-END:variables
+
+    void setTitle(int a) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

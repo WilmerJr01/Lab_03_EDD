@@ -19,7 +19,7 @@ public class Marcadores extends javax.swing.JFrame {
         initComponents();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setTitle("Menu Principal");
+        this.setTitle("Marcadores");
         this.setIconImage(new ImageIcon(getClass().getResource("Imagenes/LogoDM.png")).getImage());
     }
 
@@ -33,8 +33,7 @@ public class Marcadores extends javax.swing.JFrame {
     private void initComponents() {
 
         Titulo = new javax.swing.JLabel();
-        JugarBtn = new javax.swing.JButton();
-        MarcadoresBtn = new javax.swing.JButton();
+        VolverBtn = new javax.swing.JButton();
         FondoPrincipal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,29 +43,32 @@ public class Marcadores extends javax.swing.JFrame {
 
         Titulo.setFont(new java.awt.Font("Malgun Gothic", 1, 48)); // NOI18N
         Titulo.setForeground(new java.awt.Color(255, 255, 255));
-        Titulo.setText("Desafio Matemático");
-        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, -1, -1));
+        Titulo.setText("Marcadores");
+        getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 50, -1, -1));
 
-        JugarBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
-        JugarBtn.setForeground(new java.awt.Color(255, 255, 255));
-        JugarBtn.setText("Jugar");
-        JugarBtn.setBorderPainted(false);
-        JugarBtn.setContentAreaFilled(false);
-        getContentPane().add(JugarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, -1, -1));
-
-        MarcadoresBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
-        MarcadoresBtn.setForeground(new java.awt.Color(255, 255, 255));
-        MarcadoresBtn.setText("Marcadores");
-        MarcadoresBtn.setBorderPainted(false);
-        MarcadoresBtn.setContentAreaFilled(false);
-        MarcadoresBtn.setDefaultCapable(false);
-        getContentPane().add(MarcadoresBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, -1, -1));
+        VolverBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        VolverBtn.setForeground(new java.awt.Color(255, 255, 255));
+        VolverBtn.setText("Volver");
+        VolverBtn.setBorderPainted(false);
+        VolverBtn.setContentAreaFilled(false);
+        VolverBtn.setDefaultCapable(false);
+        VolverBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VolverBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(VolverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
         FondoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab03/Imagenes/FondoPrincipal.png"))); // NOI18N
         getContentPane().add(FondoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void VolverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBtnActionPerformed
+        new VentanaPrincipal().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_VolverBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -106,8 +108,7 @@ public class Marcadores extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FondoPrincipal;
-    private javax.swing.JButton JugarBtn;
-    private javax.swing.JButton MarcadoresBtn;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JButton VolverBtn;
     // End of variables declaration//GEN-END:variables
 }
