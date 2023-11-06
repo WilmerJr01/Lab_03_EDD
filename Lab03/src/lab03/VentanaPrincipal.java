@@ -79,7 +79,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JugarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JugarBtnActionPerformed
-        new NivelesM().setVisible(true);
+        new NivelesS().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_JugarBtnActionPerformed
 
