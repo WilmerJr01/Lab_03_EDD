@@ -50,7 +50,7 @@ public class NivelesS extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (progress >= 40) {
                     timer.stop();
-                    new PantallaFinal().setVisible(true);
+                    new PantallaFinal(RespuestasTurno.size(),multiList,RespuestasTurno).setVisible(true);
                     dispose();
                 } else {
                     progress++;

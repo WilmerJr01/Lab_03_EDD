@@ -4,7 +4,16 @@
  */
 package lab03;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,15 +21,70 @@ import javax.swing.ImageIcon;
  */
 public class PantallaFinal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form VentanaPrincipal
-     */
-    public PantallaFinal() {
+    public int NumPregunta;
+    public MultiList<Boolean> multiList;
+    public LinkedList<Integer> RespuestasTurno;
+
+    public PantallaFinal(int NumPregunta, MultiList multiList, LinkedList RespuestasTurno) {
+        this.multiList = multiList;
+        this.RespuestasTurno = RespuestasTurno;
         initComponents();
+        NumPuntaje.setText(String.valueOf(NumPregunta));
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setTitle("Marcadores");
         this.setIconImage(new ImageIcon(getClass().getResource("Imagenes/LogoDM.png")).getImage());
+
+        DefaultTableModel model = (DefaultTableModel) TablaPuntaje.getModel();
+        model.setColumnCount(3); // Establecer el número de columnas en 3
+
+        for (int i = 0; i < multiList.size(); i++) {
+            ArrayList<Boolean> sublist = this.multiList.getSublist(i);
+            for (int j = 0; j < sublist.size(); j++) {
+                String acierto;
+                if (sublist.get(j)) {
+                    acierto = "Correcto";
+                } else {
+                    acierto = "Error";
+                }
+                model.addRow(new Object[]{i * 4 + j + 1, RespuestasTurno.get(i * 20 + j), acierto});
+            }
+        }
+
+    }
+
+    private void guardarEnArchivo() {
+        try {
+            String filePath = "Marcadores.txt"; // Reemplaza con la ruta completa
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true));
+
+            String respuestaTurnoSize = RespuestasTurno != null ? String.valueOf(RespuestasTurno.size()) : "0";
+            String respuestasAcertadas = String.valueOf(contarRespuestasAcertadas());
+
+            writer.write(RespuestaDada.getText() + "\t" + respuestaTurnoSize + "\t" + respuestasAcertadas + "\n");
+            writer.close();
+            System.out.println("Nuevo registro de marcadores guardado correctamente.");
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al guardar el nuevo registro de marcadores en el archivo.");
+            e.printStackTrace();
+        }
+    }
+
+    private int contarRespuestasAcertadas() {
+        int contador = 0;
+        if (multiList.isMultiListEmpty()) {
+            contador = 0;
+        } else {
+            for (int i = 0; i < multiList.size(); i++) {
+                List<Boolean> sublist = multiList.getSublist(i);
+                for (Boolean acierto : sublist) {
+                    if (acierto) {
+                        contador++;
+                    }
+                }
+            }
+        }
+        return contador;
     }
 
     /**
@@ -32,6 +96,8 @@ public class PantallaFinal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        RespuestaDada = new javax.swing.JTextArea();
         NumPuntaje = new javax.swing.JLabel();
         PuntajeLbl = new javax.swing.JLabel();
         NombreLbl = new javax.swing.JLabel();
@@ -47,20 +113,32 @@ public class PantallaFinal extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(730, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        RespuestaDada.setColumns(1);
+        RespuestaDada.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        RespuestaDada.setRows(1);
+        RespuestaDada.setTabSize(1);
+        RespuestaDada.setToolTipText("");
+        jScrollPane2.setViewportView(RespuestaDada);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, 230, 40));
+
         NumPuntaje.setFont(new java.awt.Font("Malgun Gothic", 1, 34)); // NOI18N
         NumPuntaje.setForeground(new java.awt.Color(255, 255, 255));
         NumPuntaje.setText("###");
-        getContentPane().add(NumPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
+        getContentPane().add(NumPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 90, -1, -1));
 
         PuntajeLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 34)); // NOI18N
         PuntajeLbl.setForeground(new java.awt.Color(255, 255, 255));
         PuntajeLbl.setText("Tu Puntaje:");
-        getContentPane().add(PuntajeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 80, -1, -1));
+        getContentPane().add(PuntajeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
 
-        NombreLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
+        NombreLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 30)); // NOI18N
         NombreLbl.setForeground(new java.awt.Color(255, 255, 255));
-        NombreLbl.setText("Nombre");
-        getContentPane().add(NombreLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+        NombreLbl.setText("Nombre:");
+        getContentPane().add(NombreLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
 
         ResumenLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
         ResumenLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,23 +171,29 @@ public class PantallaFinal extends javax.swing.JFrame {
         });
         getContentPane().add(VolverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
+        TablaPuntaje.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
         TablaPuntaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "#Pregunta", "Respuesta", "Acierto"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaPuntaje.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(TablaPuntaje);
         if (TablaPuntaje.getColumnModel().getColumnCount() > 0) {
             TablaPuntaje.getColumnModel().getColumn(0).setResizable(false);
             TablaPuntaje.getColumnModel().getColumn(1).setResizable(false);
             TablaPuntaje.getColumnModel().getColumn(2).setResizable(false);
-            TablaPuntaje.getColumnModel().getColumn(3).setResizable(false);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, -1, 260));
@@ -121,12 +205,14 @@ public class PantallaFinal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MarcadoresBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MarcadoresBtnActionPerformed
-        new VentanaPrincipal().setVisible(true);
+        guardarEnArchivo();
+        new Marcadores().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_MarcadoresBtnActionPerformed
 
     private void VolverBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverBtnActionPerformed
-        // TODO add your handling code here:
+        new VentanaPrincipal().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverBtnActionPerformed
 
     /**
@@ -143,16 +229,24 @@ public class PantallaFinal extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PantallaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PantallaFinal.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -162,7 +256,12 @@ public class PantallaFinal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PantallaFinal().setVisible(true);
+                MultiList<Boolean> multiList1 = new MultiList<>();
+                List<Boolean> sublist1 = new ArrayList<>();
+                multiList1.addSublist(sublist1);
+                LinkedList linkedL1 = new LinkedList<>();
+                LinkedList linked1 = null;
+                new PantallaFinal(0, multiList1, linked1).setVisible(true);
             }
         });
     }
@@ -173,9 +272,11 @@ public class PantallaFinal extends javax.swing.JFrame {
     private javax.swing.JLabel NombreLbl;
     private javax.swing.JLabel NumPuntaje;
     private javax.swing.JLabel PuntajeLbl;
+    private javax.swing.JTextArea RespuestaDada;
     private javax.swing.JLabel ResumenLbl;
     private javax.swing.JTable TablaPuntaje;
     private javax.swing.JButton VolverBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

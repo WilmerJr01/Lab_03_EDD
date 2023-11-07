@@ -22,7 +22,7 @@ public class NivelesD extends javax.swing.JFrame {
 
     public NivelesD(int time, String PreguntaFormulada, double RespuestaCorrecta, int NumPregunta, MultiList multiList, LinkedList RespuestasTurno) {
         this.multiList = multiList;
-        if (NumPregunta == 30) {
+        if (NumPregunta == 60) {
             ArrayList<Boolean> sublist4 = new ArrayList<>();
             this.multiList.addSublist(sublist4);
         }
@@ -52,7 +52,7 @@ public class NivelesD extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (progress >= 40) {
                     timer.stop();
-                    new PantallaFinal().setVisible(true);
+                    new PantallaFinal(RespuestasTurno.size(),multiList,RespuestasTurno).setVisible(true);
                     dispose();
                 } else {
                     progress++;
@@ -199,7 +199,7 @@ public class NivelesD extends javax.swing.JFrame {
         }
         if (RespuestaCorrecta == RD) {
             Correcto.setVisible(true);
-            multiList.addElementToSublist(0, true);
+            multiList.addElementToSublist(3, true);
             progressNew = progress - 5;
             if (progressNew < 0) {
                 progressNew = 0;
@@ -208,7 +208,7 @@ public class NivelesD extends javax.swing.JFrame {
             Error.setVisible(true);
             TituloRespuesta.setVisible(true);
             RespuestaLbl.setText(String.valueOf(RespuestaCorrecta));
-            multiList.addElementToSublist(0, false);
+            multiList.addElementToSublist(3, false);
             progressNew = progress + 5;
             if (progressNew > 40) {
                 progressNew = 40;

@@ -4,7 +4,13 @@
  */
 package lab03;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Comparator;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -21,6 +27,48 @@ public class Marcadores extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setTitle("Marcadores");
         this.setIconImage(new ImageIcon(getClass().getResource("Imagenes/LogoDM.png")).getImage());
+        cargarMarcadores();
+    }
+
+    private void cargarMarcadores() {
+        try {
+            String filePath = "Marcadores.txt"; // Reemplaza con la ruta completa
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.setRowCount(0); // Limpia la tabla antes de cargar nuevos datos
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split("\t");
+                model.addRow(data);
+            }
+            reader.close();
+            ordenarTablaPorColumna();
+        } catch (IOException e) {
+            System.out.println("Ocurrió un error al cargar los marcadores desde el archivo.");
+            e.printStackTrace();
+        }
+
+    }
+
+    private void ordenarTablaPorColumna() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(model);
+        jTable1.setRowSorter(sorter);
+
+        Comparator<String> comparator = new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                // Supongamos que los valores son enteros
+                Integer int1 = Integer.parseInt(s1);
+                Integer int2 = Integer.parseInt(s2);
+                return int2 - int1; // Orden descendente
+            }
+        };
+
+        sorter.setComparator(2, comparator); // 2 es el índice de la tercera columna
+        sorter.sort();
     }
 
     /**
@@ -61,18 +109,30 @@ public class Marcadores extends javax.swing.JFrame {
         });
         getContentPane().add(VolverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, -1, -1));
 
+        jTable1.setFont(new java.awt.Font("Malgun Gothic", 1, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "# Preguntas", "Aciertos"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setSelectionBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setResizable(false);
+            jTable1.getColumnModel().getColumn(1).setResizable(false);
+            jTable1.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, 310));
 

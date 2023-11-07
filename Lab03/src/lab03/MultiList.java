@@ -23,13 +23,13 @@ public class MultiList<T> {
         }
     }
 
-    public List<T> getSublist(int sublistIndex) {
-        if (sublistIndex >= 0 && sublistIndex < multiList.size()) {
-            return multiList.get(sublistIndex);
-        } else {
-            throw new IndexOutOfBoundsException("Sublist index out of bounds.");
-        }
+    public ArrayList<T> getSublist(int sublistIndex) {
+    if (sublistIndex >= 0 && sublistIndex < multiList.size()) {
+        return (ArrayList<T>) multiList.get(sublistIndex);
+    } else {
+        throw new IndexOutOfBoundsException("Sublist index out of bounds.");
     }
+}
 
     public void printMultiList() {
         for (int i = 0; i < multiList.size(); i++) {
@@ -42,6 +42,10 @@ public class MultiList<T> {
 
     public boolean isMultiListEmpty() {
         return multiList.isEmpty();
+    }
+    
+    public int size() {
+        return multiList.size();
     }
 
     public static void main(String[] args) {

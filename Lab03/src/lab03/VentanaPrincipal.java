@@ -90,7 +90,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         MultiList<Boolean> multiList = new MultiList<>();
         List<Boolean> sublist1 = new ArrayList<>();
         multiList.addSublist(sublist1);
-        LinkedList<Integer> linkedL = new LinkedList<>(); 
+        LinkedList linkedL = new LinkedList<>(); 
         new NivelesS(0, Pregunta, Respuesta, 1, multiList,linkedL).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_JugarBtnActionPerformed
