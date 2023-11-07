@@ -4,7 +4,11 @@
  */
 package lab03;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.ImageIcon;
+import lab03.Logica;
 
 /**
  *
@@ -79,7 +83,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JugarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JugarBtnActionPerformed
-        new NivelesS().setVisible(true);
+        Logica logica = new Logica();
+        String[] vector = logica.operacioneslvl1(1);
+        String Pregunta= vector[0];
+        int Respuesta= Integer.parseInt(vector[1]);
+        MultiList<Boolean> multiList = new MultiList<>();
+        List<Boolean> sublist1 = new ArrayList<>();
+        multiList.addSublist(sublist1);
+        LinkedList<Integer> linkedL = new LinkedList<>(); 
+        new NivelesS(0, Pregunta, Respuesta, 1, multiList,linkedL).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_JugarBtnActionPerformed
 

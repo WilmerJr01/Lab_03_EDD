@@ -3,24 +3,54 @@ package lab03;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 import javax.swing.ImageIcon;
 
 public class NivelesM extends javax.swing.JFrame {
 
     private Timer timer;
-    public int progress = 0;
+    public int progress;
+    public String PreguntaFormulada;
+    public double RespuestaCorrecta;
+    public int NumPregunta;
+    public MultiList<Boolean> multiList;
+    public LinkedList RespuestasTurno;
+    public int progressNew;
 
-    public NivelesM() {
+    public NivelesM(int time, String PreguntaFormulada, double RespuestaCorrecta, int NumPregunta, MultiList multiList, LinkedList RespuestasTurno) {
+        this.multiList = multiList;
+        if (NumPregunta == 20) {
+            ArrayList<Boolean> sublist3 = new ArrayList<>();
+            this.multiList.addSublist(sublist3);
+        }
+        this.RespuestasTurno = RespuestasTurno;
         initComponents();
+        this.progress = time;
+        this.PreguntaFormulada = PreguntaFormulada;
+        this.RespuestaCorrecta = RespuestaCorrecta;
+        this.NumPregunta = NumPregunta;
+        PreguntaLbl.setText(PreguntaFormulada);
+        NumeroDeNivel.setText(String.valueOf(NumPregunta));
+        String MostrarTiempo;
+        MostrarTiempo = String.valueOf(progress);
+        TiempoLbl.setText(MostrarTiempo);
+        Correcto.setVisible(false);
+        Error.setVisible(false);
+        TituloRespuesta.setVisible(false);
+        RespuestaLbl.setVisible(false);
+
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.setTitle("Pregunta");
+        this.setTitle("Pregunta " + String.valueOf(NumPregunta));
         this.setIconImage(new ImageIcon(getClass().getResource("Imagenes/LogoDM.png")).getImage());
         timer = new Timer(1000, new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (progress >= 90) {
+                if (progress >= 40) {
                     timer.stop();
                     new PantallaFinal().setVisible(true);
                     dispose();
@@ -46,17 +76,21 @@ public class NivelesM extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        Correcto = new javax.swing.JLabel();
+        Error = new javax.swing.JLabel();
         TiempoLbl1 = new javax.swing.JLabel();
         NumeroDeNivel = new javax.swing.JLabel();
         TiempoLbl = new javax.swing.JLabel();
-        MarcadoresBtn = new javax.swing.JButton();
+        ComprobarBtn = new javax.swing.JButton();
         BarraDeTiempo = new javax.swing.JProgressBar();
         Titulo = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         PreguntaLbl = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        RespuestaDada = new javax.swing.JTextArea();
+        RespuestaLbl = new javax.swing.JLabel();
+        TituloRespuesta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -65,6 +99,12 @@ public class NivelesM extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(253, 184, 19));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Correcto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab03/Imagenes/Correcto.png"))); // NOI18N
+        jPanel1.add(Correcto, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
+
+        Error.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab03/Imagenes/Error.png"))); // NOI18N
+        jPanel1.add(Error, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 390, -1, -1));
 
         TiempoLbl1.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
         TiempoLbl1.setForeground(new java.awt.Color(255, 255, 255));
@@ -81,17 +121,22 @@ public class NivelesM extends javax.swing.JFrame {
         TiempoLbl.setText("0");
         jPanel1.add(TiempoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, -1));
 
-        MarcadoresBtn.setBackground(new java.awt.Color(253, 184, 19));
-        MarcadoresBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
-        MarcadoresBtn.setForeground(new java.awt.Color(255, 255, 255));
-        MarcadoresBtn.setText("Comprobar");
-        MarcadoresBtn.setBorderPainted(false);
-        MarcadoresBtn.setDefaultCapable(false);
-        jPanel1.add(MarcadoresBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
+        ComprobarBtn.setBackground(new java.awt.Color(253, 184, 19));
+        ComprobarBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        ComprobarBtn.setForeground(new java.awt.Color(255, 255, 255));
+        ComprobarBtn.setText("Comprobar");
+        ComprobarBtn.setBorderPainted(false);
+        ComprobarBtn.setDefaultCapable(false);
+        ComprobarBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComprobarBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ComprobarBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 410, -1, -1));
 
         BarraDeTiempo.setBackground(new java.awt.Color(255, 255, 255));
-        BarraDeTiempo.setForeground(new java.awt.Color(1, 173, 240));
-        BarraDeTiempo.setMaximum(90);
+        BarraDeTiempo.setForeground(new java.awt.Color(253, 184, 19));
+        BarraDeTiempo.setMaximum(40);
         jPanel1.add(BarraDeTiempo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 40));
 
         Titulo.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
@@ -116,19 +161,94 @@ public class NivelesM extends javax.swing.JFrame {
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(1);
-        jTextArea1.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
-        jTextArea1.setRows(1);
-        jTextArea1.setTabSize(1);
-        jTextArea1.setToolTipText("");
-        jScrollPane1.setViewportView(jTextArea1);
+        RespuestaDada.setColumns(1);
+        RespuestaDada.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        RespuestaDada.setRows(1);
+        RespuestaDada.setTabSize(1);
+        RespuestaDada.setToolTipText("");
+        jScrollPane1.setViewportView(RespuestaDada);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 230, 40));
+
+        RespuestaLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        RespuestaLbl.setForeground(new java.awt.Color(255, 255, 255));
+        RespuestaLbl.setText("00");
+        jPanel1.add(RespuestaLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 440, -1, -1));
+
+        TituloRespuesta.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
+        TituloRespuesta.setForeground(new java.awt.Color(255, 255, 255));
+        TituloRespuesta.setText("Respuesta:");
+        jPanel1.add(TituloRespuesta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ComprobarBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComprobarBtnActionPerformed
+        
+        
+        ComprobarBtn.setEnabled(false);
+        ComprobarBtn.setVisible(false);
+        RespuestasTurno.add(RespuestaCorrecta);
+        int RD;
+        try {
+            RD = Integer.parseInt(RespuestaDada.getText());
+        } catch (NumberFormatException e) {
+            RD = 0;
+        }
+        if (RespuestaCorrecta == RD) {
+            Correcto.setVisible(true);
+            multiList.addElementToSublist(0, true);
+            progressNew = progress - 5;
+            if (progressNew < 0) {
+                progressNew = 0;
+            }
+        } else {
+            Error.setVisible(true);
+            TituloRespuesta.setVisible(true);
+            RespuestaLbl.setText(String.valueOf(RespuestaCorrecta));
+            multiList.addElementToSublist(0, false);
+            progressNew = progress + 5;
+            if (progressNew > 40) {
+                progressNew = 40;
+            }
+        }
+        multiList.printMultiList();
+        for (Object element : RespuestasTurno) {
+            System.out.println(element);
+        }
+
+        // Detener el timer inicial
+        timer.stop();
+
+        // Agregar temporizador de 5 segundos antes de cambiar de JFrame
+        Timer delayTimer = new Timer(3000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Logica logica = new Logica();
+                String[] vector = new String[2], vector1 = new String[2];
+
+                if (NumPregunta + 1 >= 41 && NumPregunta <=50) {
+                    vector = logica.operacioneslvl5(NumPregunta + 1);
+                }
+
+                if (NumPregunta + 1 >= 51 && NumPregunta + 1 <= 60) {
+                    vector1 = logica.operacioneslvl6(NumPregunta + 1);
+                }
+                if (NumPregunta + 1 < 60) {
+                    new NivelesM(progressNew, vector[0], Double.parseDouble(vector[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
+                    dispose();
+                } else {
+                    new NivelesD(progressNew, vector1[0], Double.parseDouble(vector1[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
+                    dispose();
+                }
+            }
+        });
+        delayTimer.setRepeats(false);
+        delayTimer.start();
+    }//GEN-LAST:event_ComprobarBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,27 +291,54 @@ public class NivelesM extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NivelesM().setVisible(true);
+                String Pregunta = "Ingrese Pregunta";
+                int Respuesta = 2;
+                MultiList<Boolean> multiList = new MultiList<>();
+                List<Boolean> sublist1 = new ArrayList<>();
+                multiList.addSublist(sublist1);
+                LinkedList linkedL = new LinkedList<>();
+
+                new NivelesM(0, Pregunta, Respuesta, 0, multiList, linkedL).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar BarraDeTiempo;
-    private javax.swing.JButton MarcadoresBtn;
+    private javax.swing.JButton ComprobarBtn;
+    private javax.swing.JLabel Correcto;
+    private javax.swing.JLabel Error;
     private javax.swing.JLabel NumeroDeNivel;
     private javax.swing.JLabel PreguntaLbl;
+    private javax.swing.JTextArea RespuestaDada;
+    private javax.swing.JLabel RespuestaLbl;
     private javax.swing.JLabel TiempoLbl;
     private javax.swing.JLabel TiempoLbl1;
     private javax.swing.JLabel Titulo;
+    private javax.swing.JLabel TituloRespuesta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
