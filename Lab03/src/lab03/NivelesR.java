@@ -236,13 +236,13 @@ public class NivelesR extends javax.swing.JFrame {
                 }
 
                 if (NumPregunta + 1 >= 31 && NumPregunta + 1 <= 40) {
-                    vector1 = logica.operacioneslvl4(NumPregunta + 1);
+                    vector = logica.operacioneslvl4(NumPregunta + 1);
                 }
                 if (NumPregunta + 1 < 40) {
                     new NivelesR(progressNew, vector[0], Double.parseDouble(vector[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
                     dispose();
                 } else {
-                    new NivelesM(progressNew, vector1[0], Double.parseDouble(vector1[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
+                    new NivelesM(progressNew, vector[0], Double.parseDouble(vector[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
                     dispose();
                 }
             }

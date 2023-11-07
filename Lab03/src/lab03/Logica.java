@@ -9,7 +9,7 @@ public class Logica {
     DecimalFormat df = new DecimalFormat("#.###");
     public int qstn = 1, puntaje = 0;
     public double aux;
-    public String qstna, pregunta;
+    public String qstna;
 
     //sumas y restas
     public  String[] operacioneslvl1(int qstn) {

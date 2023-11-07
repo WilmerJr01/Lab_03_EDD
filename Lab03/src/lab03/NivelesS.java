@@ -189,9 +189,14 @@ public class NivelesS extends javax.swing.JFrame {
         ComprobarBtn.setVisible(false);
         RespuestasTurno.add(RespuestaCorrecta);
         int RD;
-        try {
-            RD = Integer.parseInt(RespuestaDada.getText());
-        } catch (NumberFormatException e) {
+        String respuestaDadaText = RespuestaDada.getText().trim();
+        if (!respuestaDadaText.isEmpty()) {
+            try {
+                RD = Integer.parseInt(respuestaDadaText);
+            } catch (NumberFormatException e) {
+                RD = 0;
+            }
+        } else {
             RD = 0;
         }
         if (RespuestaCorrecta == RD) {
@@ -229,16 +234,14 @@ public class NivelesS extends javax.swing.JFrame {
 
                 if (NumPregunta + 1 <= 10) {
                     vector = logica.operacioneslvl1(NumPregunta + 1);
-                }
-
-                if (NumPregunta + 1 >= 11 && NumPregunta + 1 <= 20) {
-                    vector1 = logica.operacioneslvl2(NumPregunta + 1);
+                } else if (NumPregunta + 1 >= 11 && NumPregunta + 1 <= 20) {
+                    vector = logica.operacioneslvl2(NumPregunta + 1);
                 }
                 if (NumPregunta + 1 < 20) {
                     new NivelesS(progressNew, vector[0], Integer.parseInt(vector[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
                     dispose();
                 } else {
-                    new NivelesR(progressNew, vector1[0], Double.parseDouble(vector1[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
+                    new NivelesR(progressNew, vector[0], Double.parseDouble(vector[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
                     dispose();
                 }
             }

@@ -235,13 +235,13 @@ public class NivelesM extends javax.swing.JFrame {
                 }
 
                 if (NumPregunta + 1 >= 51 && NumPregunta + 1 <= 60) {
-                    vector1 = logica.operacioneslvl6(NumPregunta + 1);
+                    vector = logica.operacioneslvl6(NumPregunta + 1);
                 }
                 if (NumPregunta + 1 < 60) {
                     new NivelesM(progressNew, vector[0], Double.parseDouble(vector[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
                     dispose();
                 } else {
-                    new NivelesD(progressNew, vector1[0], Double.parseDouble(vector1[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
+                    new NivelesD(progressNew, vector[0], Double.parseDouble(vector[1]), NumPregunta + 1, multiList, RespuestasTurno).setVisible(true);
                     dispose();
                 }
             }
