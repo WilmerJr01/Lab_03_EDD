@@ -111,10 +111,10 @@ public class NivelesD extends javax.swing.JFrame {
         TiempoLbl1.setText("Tiempo:");
         jPanel1.add(TiempoLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, -1, -1));
 
-        NumeroDeNivel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 36)); // NOI18N
+        NumeroDeNivel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
         NumeroDeNivel.setForeground(new java.awt.Color(255, 255, 255));
         NumeroDeNivel.setText("00");
-        jPanel1.add(NumeroDeNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 120, 90));
+        jPanel1.add(NumeroDeNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 120, 90));
 
         TiempoLbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         TiempoLbl.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,7 +142,7 @@ public class NivelesD extends javax.swing.JFrame {
         Titulo.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
         Titulo.setForeground(new java.awt.Color(255, 255, 255));
         Titulo.setText("Pregunta #");
-        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+        jPanel1.add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, -1, -1));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

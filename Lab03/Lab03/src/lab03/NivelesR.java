@@ -111,10 +111,10 @@ public class NivelesR extends javax.swing.JFrame {
         TiempoLbl1.setText("Tiempo:");
         jPanel1.add(TiempoLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 50, -1, -1));
 
-        NumeroDeNivel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 36)); // NOI18N
+        NumeroDeNivel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
         NumeroDeNivel.setForeground(new java.awt.Color(255, 255, 255));
         NumeroDeNivel.setText("00");
-        jPanel1.add(NumeroDeNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 60, 120, 90));
+        jPanel1.add(NumeroDeNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 120, 90));
 
         TiempoLbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         TiempoLbl.setForeground(new java.awt.Color(255, 255, 255));

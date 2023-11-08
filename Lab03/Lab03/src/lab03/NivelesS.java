@@ -113,7 +113,7 @@ public class NivelesS extends javax.swing.JFrame {
         NumeroDeNivel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
         NumeroDeNivel.setForeground(new java.awt.Color(255, 255, 255));
         NumeroDeNivel.setText("00");
-        jPanel1.add(NumeroDeNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 80, 120, 90));
+        jPanel1.add(NumeroDeNivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 120, 90));
 
         TiempoLbl.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 24)); // NOI18N
         TiempoLbl.setForeground(new java.awt.Color(255, 255, 255));

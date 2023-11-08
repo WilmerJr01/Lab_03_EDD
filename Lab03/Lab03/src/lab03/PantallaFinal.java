@@ -123,30 +123,31 @@ public class PantallaFinal extends javax.swing.JFrame {
         RespuestaDada.setToolTipText("");
         jScrollPane2.setViewportView(RespuestaDada);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 40, 230, 40));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 30, 230, 40));
 
         NumPuntaje.setFont(new java.awt.Font("Malgun Gothic", 1, 34)); // NOI18N
         NumPuntaje.setForeground(new java.awt.Color(255, 255, 255));
         NumPuntaje.setText("###");
-        getContentPane().add(NumPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
+        getContentPane().add(NumPuntaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         PuntajeLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 34)); // NOI18N
         PuntajeLbl.setForeground(new java.awt.Color(255, 255, 255));
         PuntajeLbl.setText("Tu Puntaje:");
-        getContentPane().add(PuntajeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        getContentPane().add(PuntajeLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, -1, -1));
 
         NombreLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 30)); // NOI18N
         NombreLbl.setForeground(new java.awt.Color(255, 255, 255));
         NombreLbl.setText("Nombre:");
-        getContentPane().add(NombreLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, -1, -1));
+        getContentPane().add(NombreLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 30, -1, -1));
 
         ResumenLbl.setFont(new java.awt.Font("Malgun Gothic", 1, 36)); // NOI18N
         ResumenLbl.setForeground(new java.awt.Color(255, 255, 255));
         ResumenLbl.setText("Resumen:");
-        getContentPane().add(ResumenLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
+        getContentPane().add(ResumenLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 90, -1, -1));
 
         MarcadoresBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 24)); // NOI18N
         MarcadoresBtn.setForeground(new java.awt.Color(255, 255, 255));
+        MarcadoresBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab03/Imagenes/puntuacion-mas-alta.png"))); // NOI18N
         MarcadoresBtn.setText("Marcadores >");
         MarcadoresBtn.setBorderPainted(false);
         MarcadoresBtn.setContentAreaFilled(false);
@@ -156,7 +157,7 @@ public class PantallaFinal extends javax.swing.JFrame {
                 MarcadoresBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(MarcadoresBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 210, 120));
+        getContentPane().add(MarcadoresBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, 260, 80));
 
         VolverBtn.setFont(new java.awt.Font("Tw Cen MT Condensed", 1, 18)); // NOI18N
         VolverBtn.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,7 +179,7 @@ public class PantallaFinal extends javax.swing.JFrame {
                 VolverBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(VolverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, -1, 130));
+        getContentPane().add(VolverBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, 70));
 
         TablaPuntaje.setAutoCreateRowSorter(true);
         TablaPuntaje.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 14)); // NOI18N
@@ -207,7 +208,7 @@ public class PantallaFinal extends javax.swing.JFrame {
             TablaPuntaje.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, 260));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 500, 260));
 
         FondoPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lab03/Imagenes/FondoPrincipal.png"))); // NOI18N
         getContentPane().add(FondoPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 500));
